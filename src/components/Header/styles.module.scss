@@ -1,6 +1,6 @@
 .headerContainer {
     background-color: var(--white);
-    height: 6.5rem;
+    //height: 6.5rem;
 
     display: flex;
     align-items: center;
@@ -20,4 +20,36 @@
         text-transform: capitalize;
     }
 
+}
+
+@media(max-width: 1200px) {
+    .headerContainer {
+        flex-direction: column;
+        padding: 1rem 3rem;
+
+        p {
+            border-left: none;
+            margin-left: 0;
+        }
+        span {
+            margin-left: 0;
+            margin-top: 1rem;
+        }
+    }
+}
+
+@media(max-width: 600px) {
+    .headerContainer {
+        flex-direction: column;
+        padding: .5rem 2rem;
+
+        p {
+            border-left: none;
+            margin-left: 0;
+        }
+        span {
+            margin-left: 0;
+            margin-top: 1rem;
+        }
+    }
 }

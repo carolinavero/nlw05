@@ -1,8 +1,10 @@
 .homepage {
     background-color: var(--white);
 
-    padding: 0 4rem;
+    padding: 0 5vw;
     height: calc(100vh - 6.5rem);
+    width: 70vw;
+
     overflow-y: scroll;
 
     h2 {
@@ -26,6 +28,11 @@
 
             display: flex;
             align-items: center;
+
+            .img-box {
+                width: 100px;
+                background-color: red;
+            }
 
             img {
                 width: 6rem;
@@ -112,23 +119,46 @@
 
 .allEpisodes {
     padding-bottom: 2rem;
-
-    table {
-       width: 100%;
+    
+    .allEpisodesListTable {
+        overflow-x: auto;
+        width: 100%;
        
-       th, td {
-           padding: .75rem 1rem;
-           border-bottom: 1px solid var(--gray-100);
-       }
+       // tr, td {
+           // padding: .75rem 1rem;
+           // border-bottom: 1px solid var(--gray-100);
+       // }
 
-       th {
+       .listHeader {
+           display: flex;
+           flex-direction: row;
+           align-items: center;
+           justify-content: space-between;
+           
            color: var(--gray-200);
            text-transform: uppercase;
            font: 500 .75rem Lexend, sans-serif;
            text-align: left;
        }
-       td {
-           font-size: .875rem;
+        .listContent {
+            font-size: .875rem;
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            .listContentInfo {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                padding: .75rem 1rem;
+                border-top: 1px solid var(--gray-100);
+            }
+            .episodeTitle {
+                width: 360px;
+            }
 
             img {
                 width: 2.5rem;
@@ -171,4 +201,63 @@
             }
        }
     }
+}
+
+@media(max-width: 1200px) {
+    .latestEpisodes {
+        ul {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+    
+}
+
+@media(max-width: 600px) {
+    .homepage {
+        padding: 15px;
+        height: auto;
+        overflow-y: scroll;
+        h2 {
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+    }
+    .latestEpisodes {
+        ul {
+            display: flex;
+            flex-direction: column;
+            li {
+                padding: .85rem;
+                flex-direction: column;
+                align-items: flex-start;
+                img {
+                    &.episodeThumb {
+                        width: 100%;
+                        padding-bottom: .5rem;
+                    }
+                }
+                .episodeDetails {
+                    margin-left: 0;
+                }
+            }
+
+        }
+    }
+    .allEpisodes {
+        .allEpisodesListTable {
+            .listHeader {
+                display: none;
+            }
+            .listContent {
+                .listContentInfo {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                .episodeTitle {
+                    width: auto;
+                }
+            }
+        }
+    }
+
 }

@@ -55,6 +55,9 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
 
       <Head>
         <title>Home | Podcastr </title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" key="viewport"></meta>
+        <meta name="theme-color" content="#8257e5"></meta>
       </Head>
       
       <section className={styles.latestEpisodes}>
@@ -64,7 +67,14 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
           {latestEpisodes.map((episode, index) => {
             return (
               <li key={episode.id}>
-                <Image width={192} height={192} src={episode.thumbnail} alt={episode.title} objectFit="cover" />
+                <div className="img-box">
+                  <Image width={192} height={192} 
+                    src={episode.thumbnail} 
+                    alt={episode.title} 
+                    objectFit="cover" 
+                    className={styles.episodeThumb} 
+                  />
+                </div>
 
                 <div className={styles.episodeDetails}>
                   <Link href={`/episodes/${episode.id}`}>
@@ -87,7 +97,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
       <section className={styles.allEpisodes}>
           <h2>Todos episódios</h2>
 
-          <table cellSpacing={0}>
+          {/* <table cellSpacing={0}>
             <thead>
               <tr>
                 <th></th>
@@ -129,7 +139,49 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                 )
               })}
             </tbody>
-          </table>
+          </table> */}
+
+          <div className={styles.allEpisodesListTable}>
+            <div className={styles.listHeader}>
+                <div>Podcast</div>
+                <div>Integrantes</div>
+                <div>Data</div>
+                <div>Duração</div>
+            </div>
+
+            <div className={styles.listContent}>
+              {allEpisodes.map((episode, index) => {
+                return (
+                  <div key={episode.id} className={styles.listContentInfo}>
+                    <div style={{ width: 72 }}>
+                      <Image 
+                        width={120} 
+                        height={120}
+                        src={episode.thumbnail}
+                        alt={episode.title}
+                        objectFit="cover"
+                        className={styles.episodeThumb}
+                      />
+                    </div>
+                    <div  style={{ width: 360 }}>
+                      <Link href={`/episodes/${episode.id}`}>
+                        <a >{episode.title}</a>
+                      </Link>
+                    </div>
+                    <div style={{ width: 250 }}>{episode.members}</div>
+                    <div style={{ width: 100 }}>{episode.publishedAt}</div>
+                    <div>{episode.durationAsString}</div>
+                    <div>
+                      <button type="button" onClick={() => playList(episodeList, index + latestEpisodes.length)}>
+                         <img src="/play-green.svg" alt="Tocar episódio"/>
+                      </button>  
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
       </section>
     </div>
   )
